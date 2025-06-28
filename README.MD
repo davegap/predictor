@@ -110,9 +110,10 @@ docker run -it predictor_usc
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
-David Alfonso Vega Palacio
-Manuel Alejandro Mena López
-Joan Andres Buriticá Salazar
-Universidad Santiago de Cali – Maestría en Informática
+- **David Alfonso Vega Palacio**  
+- **Manuel Alejandro Mena López**  
+- **Joan Andrés Buriticá Salazar**  
+**Universidad Santiago de Cali**  
+*Maestría en Informática*
