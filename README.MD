@@ -7,9 +7,10 @@ Este repositorio contiene un proyecto de machine learning orientado a predecir l
 ```
 Proyecto_Chaquetas/
 ├── graficos/                   # Imágenes generadas por visualización
-├── modelos/                    # Modelos entrenados (.pkl)
+├── modelos/                    # Modelos entrenados y optimizados (.pkl)
 ├── dataset.csv                 # Datos históricos de ventas
-├── train.py                    # Entrenamiento de modelos
+├── train.py                    # Entrenamiento de modelos base
+├── optimize_model.py           # Optimización de los mejores modelos
 ├── visualizar_resultados.py    # Comparación visual de modelos
 ├── api.py                      # Predicción manual desde consola
 ├── requirements.txt            # Librerías necesarias
@@ -57,7 +58,29 @@ Este script se encarga de:
 
 ---
 
-### 2. Visualizar resultados – `visualizar_resultados.py`
+### 2. Optimizar los mejores modelos – `optimize_model.py`
+
+```bash
+python optimize_model.py
+```
+
+Este script:
+
+- Identifica los dos mejores modelos con mayor R² Score (Gradient Boosting y Random Forest).
+- Aplica **validación cruzada** (`cv=5`) para una evaluación más robusta.
+- Ejecuta **ajuste de hiperparámetros** usando `GridSearchCV`.
+- Imprime los mejores parámetros encontrados y el R² promedio optimizado.
+- Guarda los modelos optimizados como:
+  - `gradient_boosting_optimized.pkl`
+  - `random_forest_optimized.pkl`
+
+📁 **Resultado esperado**:
+- Modelos mejorados en `modelos/`
+- R² optimizado superior al entrenamiento base.
+
+---
+
+### 3. Visualizar resultados – `visualizar_resultados.py`
 
 ```bash
 python visualizar_resultados.py
@@ -74,18 +97,19 @@ Este script:
 
 ---
 
-### 3. Realizar predicciones manuales – `api.py`
+### 4. Realizar predicciones manuales – `api.py`
 
 ```bash
 python api.py
 ```
 
-Este script interactivo:
+Este script interactivo permite realizar predicciones desde consola de manera intuitiva:
 
-- Solicita al usuario los 11 datos requeridos para hacer una predicción (temporada, color, talla, precio, etc.).
-- Carga el modelo `gradient_boosting.pkl`.
-- Calcula la predicción de unidades vendidas.
-- Muestra el resultado estimado en pantalla.
+- Muestra un menú con todos los modelos disponibles en la carpeta modelos/ (incluyendo versiones optimizadas).
+- Permite al usuario seleccionar qué modelo desea utilizar para la predicción.
+- Solicita al usuario 5 datos clave para la estimación de ventas: precio, promoción, temporada, mes y día.
+- Carga automáticamente el modelo seleccionado.
+- Realiza la predicción y muestra en pantalla el número estimado de unidades vendidas.
 
 🧠 Este paso simula cómo se utilizaría el modelo ya entrenado en un entorno de consulta real.
 
